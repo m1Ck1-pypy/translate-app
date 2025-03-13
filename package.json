@@ -1,0 +1,26 @@
+{
+  "name": "translate-app",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev:app": "cd ./app && bun run dev",
+    "dev:backend": "cd ./backend && bun run dev",
+    "lint": "bun run lint:app && bun run lint:backend",
+    "lint:app": "cd app && bun lint",
+    "lint:backend": "cd backend && bun lint"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "eslint-plugin-simple-import-sort": "^12.1.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.22.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "typescript-eslint": "^8.26.1"
+  }
+}
