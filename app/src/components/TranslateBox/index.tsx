@@ -24,11 +24,11 @@ const TranslateBox = () => {
   return (
     <Root>
       <Group>
-        <SelectLang value={sourceLanguageCode} onUpdate={onUpdateSource} />
+        <SelectLang value={sourceLanguageCode} onUpdate={onUpdateSource} textVoice={text} />
         <CustomTArea value={text} onChange={setText} placeholder='Введите текст для перевода' />
       </Group>
       <Group>
-        <SelectLang value={targetLanguageCode} onUpdate={onUpdateTarget} isCopy />
+        <SelectLang value={targetLanguageCode} onUpdate={onUpdateTarget} isCopy textVoice={resultText} />
         <CustomTArea value={resultText} />
       </Group>
     </Root>

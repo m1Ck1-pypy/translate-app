@@ -6,6 +6,7 @@ type Props = {
   color?: string;
   width?: number;
   height?: number;
+  theme: string;
 };
 
 export const Icon = styled(Box)<Props>`
@@ -20,7 +21,7 @@ export const Icon = styled(Box)<Props>`
   cursor: pointer;
 
   &:hover {
-    background-color: #000;
+    background-color: ${({ theme }) => (theme === 'dark' ? '#fff' : '#000')};
   }
 `;
 

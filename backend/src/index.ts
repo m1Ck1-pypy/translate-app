@@ -39,6 +39,34 @@ const fetchYandexTextTranslate = async (data: TranslateTextPayload): Promise<str
   }
 };
 
+const fetchYandexSynthesizeSpeech = async (text: string): Promise<ArrayBuffer | string> => {
+  try {
+    const response = await axios.post(
+      process.env.YSYNTHESIZE_CLOUD_URL!,
+      new URLSearchParams({
+        text,
+        lang: 'ru-RU',
+        voice: 'jane',
+        folderId: process.env.YC_FOLDER_ID!,
+        format: 'mp3',
+      }).toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: process.env.YC_IAM,
+        },
+        responseType: 'arraybuffer',
+      },
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error(error);
+
+    return 'An error occurred during speech synthesis.';
+  }
+};
+
 const server = Bun.serve({
   port: PORT,
   async fetch(request: Request) {
@@ -54,6 +82,21 @@ const server = Bun.serve({
       const result = await fetchYandexTextTranslate(data);
 
       return new Response(result, { status: 200, headers: CORS_HEADERS });
+    }
+
+    if (method === 'POST' && pathname === '/synthesize') {
+      const { text } = await request.json();
+
+      const result = await fetchYandexSynthesizeSpeech(text);
+
+      if (typeof result === 'string') {
+        return new Response(result, { status: 200, headers: CORS_HEADERS });
+      }
+
+      return new Response(result, {
+        status: 200,
+        headers: { 'Content-Type': 'audio/mpeg', ...CORS_HEADERS },
+      });
     }
 
     return new Response('Not Found', {

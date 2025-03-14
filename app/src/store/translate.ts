@@ -10,6 +10,8 @@ type Store = {
   sourceLanguageCode: string;
   resultText: string;
   loading: boolean;
+
+  audioLoading: boolean;
 };
 
 type Actions = {
@@ -17,6 +19,7 @@ type Actions = {
   setTargetLang: (lang: string) => void;
   setSourceLang: (lang: string) => void;
   setLoading: (value: boolean) => void;
+  setAudioLoading: (value: boolean) => void;
   clear: () => void;
 
   translateText: () => Promise<void>;
@@ -28,6 +31,7 @@ export const translateState = proxy<Store & Actions>({
   targetLanguageCode: 'en',
   resultText: '',
   loading: false,
+  audioLoading: false,
 
   setText: (text) => {
     translateState.text = text;
@@ -46,8 +50,12 @@ export const translateState = proxy<Store & Actions>({
     translateState.sourceLanguageCode = lang;
   },
 
-  setLoading: (value: boolean) => {
+  setLoading: (value) => {
     translateState.loading = value;
+  },
+
+  setAudioLoading: (value) => {
+    translateState.audioLoading = value;
   },
 
   translateText: async () => {

@@ -11,7 +11,7 @@ import App from './screens/app';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ThemeProvider theme='light'>
+    <ThemeProvider theme='dark'>
       <App />
     </ThemeProvider>
   </StrictMode>,

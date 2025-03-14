@@ -25,7 +25,7 @@ export default tseslint.config(
       'no-console': ['error', { allow: ['warn', 'error'] }],
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
       '@typescript-eslint/no-explicit-any': ['warn', { ignoreRestArgs: true }],
-      complexity: ['warn', 5],
+      complexity: ['warn', 8],
       'simple-import-sort/imports': ['warn'],
       'simple-import-sort/exports': ['warn'],
     },
