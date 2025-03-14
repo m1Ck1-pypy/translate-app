@@ -8,7 +8,7 @@ import { Group } from './styles/Group';
 import { Root } from './styles/Root';
 
 const TranslateBox = () => {
-  const { text, setText, sourceLanguageCode, targetLanguageCode, setSourceLang, setTargetLang } =
+  const { text, setText, sourceLanguageCode, targetLanguageCode, setSourceLang, setTargetLang, resultText } =
     useSnapshot(translateState);
 
   const onUpdateTarget = (value: string[]) => {
@@ -28,8 +28,8 @@ const TranslateBox = () => {
         <CustomTArea value={text} onChange={setText} placeholder='Введите текст для перевода' />
       </Group>
       <Group>
-        <SelectLang value={targetLanguageCode} onUpdate={onUpdateTarget} />
-        <CustomTArea value='' />
+        <SelectLang value={targetLanguageCode} onUpdate={onUpdateTarget} isCopy />
+        <CustomTArea value={resultText} />
       </Group>
     </Root>
   );

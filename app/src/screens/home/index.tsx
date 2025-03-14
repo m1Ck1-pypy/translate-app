@@ -25,7 +25,7 @@ const Home = () => {
       </Header>
       <Container>
         <TranslateBox />
-        <Button size='l' view='action' onClick={handleTranslateText}>
+        <Button size='l' view='action' onClick={handleTranslateText} loading={store.loading}>
           Перевести
         </Button>
       </Container>

@@ -1,9 +1,8 @@
 import { Box } from '@gravity-ui/uikit';
 import { styled } from 'styled-components';
 
-export const Group = styled(Box)`
+export const Root = styled(Box)`
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 `;
